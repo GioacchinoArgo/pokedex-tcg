@@ -22,7 +22,7 @@ const Header = () => {
 
 
             <div
-                className={`absolute lg:hidden left-0 w-full top-[100%] bg-red-600 flex flex-col items-center gap-6 font-semibold text-lg transform transition-all duration-600 ${isMenuOpen ? "opacity-100" : "opacity-0"
+                className={`absolute lg:hidden left-0 w-full top-[100%] bg-red-600 flex flex-col items-center gap-6 font-semibold text-lg transform transition-all duration-600 ${isMenuOpen ? "opacity-100" : "invisible opacity-0"
                     }`}
             >
                 <ul>
