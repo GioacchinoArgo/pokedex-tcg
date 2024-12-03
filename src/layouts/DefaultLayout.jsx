@@ -10,11 +10,10 @@ const DefaultLayout = () => {
         <>
             <Header isOpenMenu={isOpen} setIsOpenMenu={setIsOpen} />
 
-            {!isOpen &&
-                <main>
-                    <Outlet />
-                </main>
-            }
+            <main className={`${isOpen ? "h-0" : "opacity-100"} transform transition-all duration-600`}>
+                <Outlet />
+            </main>
+
 
         </>
     )
