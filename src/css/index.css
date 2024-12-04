@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Utilities */
+.active {
+    border-bottom-width: 4px; 
+    border-color: transparent; 
+}
+
+.active.red {
+    border-color: #E3350D;
+}
+
+.active.yellow {
+    border-color: #E6BC2F;
+}
+
+.active.green {
+    border-color: #4DAD5B;
+}
+
+/* Main - Layout */
 main {
     height: calc(100vh - 80px);
     overflow: auto;
