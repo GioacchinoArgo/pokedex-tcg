@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const PokedexIndex = () => {
 
@@ -67,7 +68,7 @@ const PokedexIndex = () => {
                 <div className="flex justify-center items-center gap-4 flex-wrap">
 
                     {pokemonDetail?.map(pokemon => (
-                        <div className='py-4 basis-1/5 rounded-md shadow-lg flex flex-col items-center justify-center overflow-hidden hover:scale-110 cursor-pointer ease-in-out duration-200' key={`pokemon-${pokemon.id}`}>
+                        <Link to={`/${pokemon.id}`} className='py-4 basis-1/5 rounded-md shadow-lg flex flex-col items-center justify-center overflow-hidden hover:scale-110 cursor-pointer ease-in-out duration-200' key={`pokemon-${pokemon.id}`}>
                             <img src={pokemon.sprites.other['official-artwork'].front_default} alt={pokemon.name} />
                             <h2 className="capitalize text-2xl">{pokemon.name}</h2>
 
@@ -82,7 +83,7 @@ const PokedexIndex = () => {
 
                             </div>
 
-                        </div>
+                        </Link>
                     ))}
 
                 </div>
