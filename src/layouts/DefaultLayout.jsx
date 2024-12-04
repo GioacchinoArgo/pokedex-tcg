@@ -30,7 +30,7 @@ const DefaultLayout = () => {
         <>
             <Header isOpenMenu={isOpen} setIsOpenMenu={setIsOpen} />
 
-            <main className={`${isOpen ? "h-0" : "opacity-100"} transform transition-all duration-600`}>
+            <main className={`${isOpen ? "h-0" : "opacity-100"} transform transition-all duration-700`}>
                 <Outlet />
             </main>
 
