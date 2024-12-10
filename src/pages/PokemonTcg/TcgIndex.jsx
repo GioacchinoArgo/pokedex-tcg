@@ -1,0 +1,46 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+const TcgIndex = () => {
+
+    const [cards, setCards] = useState();
+
+    // Funzione per cercare le prime 20 carte
+    const fetchCards = async () => {
+        const res = await axios.get('https://api.pokemontcg.io/v2/cards?pageSize=20&q=set.name:base', {
+            headers: {
+                'X-Api-Key': '307349a3-9010-4b96-993c-efe364b54878'
+            }
+        });
+
+        const cards = res.data.data;
+
+        setCards(cards);
+
+
+        console.log(cards)
+    }
+
+    useEffect(() => {
+        fetchCards()
+    }, [])
+
+    return (
+
+        // Lista delle carte
+        <section>
+            <div className="container mx-auto py-8">
+                <h1 className="text-center text-6xl font-semibold mb-8">Trading Card Game</h1>
+                <div className="flex justify-center items-center gap-4 flex-wrap">
+                    {cards?.map(card => (
+                        <Link className="flex flex-col h-[350px] items-center justify-center overflow-hidden hover:scale-110 cursor-pointer ease-in-out duration-200" key={`card-${card.id}`}>
+                            <img className="shadow-lg rounded-md h-full" src={card.images.large} alt={card.name} />
+                        </Link>
+                    ))}
+                </div>
+            </div>
+        </section>
+    )
+}
+export default TcgIndex;
