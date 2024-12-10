@@ -170,27 +170,25 @@ const PokedexShow = () => {
 
                     {/* Linea Evolutiva */}
                     <li className="w-4/5 h-[400px] bg-slate-600 my-16 rounded-md p-6">
-                        <div className="h-full w-full rounded-md flex justify-around gap-10 relative">
+                        <div className="h-full w-full rounded-md flex justify-center gap-10">
 
                             {pokemon?.evolutions.map((evolution, i) => (
-                                <>
-                                    <div key={`pokemon-${i}`} className={`basis-1/${pokemon.totalEvolution} bg-orange-300 p-4 rounded-full`}>
-                                        <figure className="h-3/4 overflow-hidden flex justify-center">
-                                            <img className="h-full" src={evolution.image} alt={evolution.name} />
-                                        </figure>
-                                        <h2 className="capitalize text-center text-xl">{evolution.name}</h2>
-                                        <div className="flex gap-2 justify-center items-center my-4">
+                                <div key={`pokemon-${i}`} className={`basis-1/${pokemon?.totalEvolution} bg-orange-300 p-4 rounded-full`}>
+                                    <figure className="h-3/4 overflow-hidden flex justify-center">
+                                        <img className="h-full select-none drag" src={evolution.image} alt={evolution.name} />
+                                    </figure>
+                                    <h2 className="capitalize text-center text-xl">{evolution.name}</h2>
+                                    <div className="flex gap-2 justify-center items-center my-4">
 
-                                            {evolution.types.map(({ image, name }, i) => (
-                                                <div key={`type-${i}`}>
-                                                    <img src={image} alt={name} className="h-6 w-[95px] rounded-md" />
-                                                </div>
-                                            ))}
-
-                                        </div>
+                                        {evolution.types.map(({ image, name }, i) => (
+                                            <div key={`type-${i}`}>
+                                                <img src={image} alt={name} className="h-6 w-[95px] rounded-md" />
+                                            </div>
+                                        ))}
 
                                     </div>
-                                </>
+
+                                </div>
                             ))}
 
                         </div>
@@ -214,7 +212,6 @@ const PokedexShow = () => {
                         </ul>
                     </li>
 
-                    <li></li>
                 </ul>
 
             </div>
