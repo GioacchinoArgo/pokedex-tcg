@@ -2,11 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-main {
-    height: calc(100vh - 80px);
-    overflow: auto;
+/* Utilities */
+.active {
+    border-bottom-width: 4px; 
+    border-color: transparent; 
+}
+
+.active.red {
+    border-color: #E3350D;
+}
+
+.active.yellow {
+    border-color: #E6BC2F;
+}
+
+.active.green {
+    border-color: #4DAD5B;
 }
 
 .drag {
     -webkit-user-drag: none;
+}
+
+/* Main - Layout */
+main {
+    height: calc(100vh - 80px);
+    overflow: auto;
 }

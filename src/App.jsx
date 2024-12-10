@@ -3,6 +3,7 @@ import PokedexIndex from "./pages/Pokedex/PokedexIndex";
 import DefaultLayout from "./layouts/DefaultLayout";
 import PokedexShow from "./pages/Pokedex/PokedexShow";
 
+
 const App = () => {
   return (
     <Routes>
