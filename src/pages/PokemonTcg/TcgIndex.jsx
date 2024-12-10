@@ -31,7 +31,7 @@ const TcgIndex = () => {
         // Lista delle carte
         <section>
             <div className="container mx-auto py-8">
-                <h1 className="text-center text-6xl font-semibold mb-8">TCG List</h1>
+                <h1 className="text-center text-6xl font-semibold mb-8">Trading Card Game</h1>
                 <div className="flex justify-center items-center gap-4 flex-wrap">
                     {cards?.map(card => (
                         <Link className="flex flex-col h-[350px] items-center justify-center overflow-hidden hover:scale-110 cursor-pointer ease-in-out duration-200" key={`card-${card.id}`}>
