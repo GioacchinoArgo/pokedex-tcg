@@ -20,6 +20,10 @@
     border-color: #4DAD5B;
 }
 
+.drag {
+    -webkit-user-drag: none;
+}
+
 /* Main - Layout */
 main {
     height: calc(100vh - 80px);
