@@ -4,7 +4,6 @@ import { Link, NavLink } from "react-router-dom";
 import aboutUs from "../../assets/img/about-us.png";
 import cards from "../../assets/img/cards.png";
 import pokedex from "../../assets/img/pokedex.png";
-import logo from "../../assets/img/logo.png";
 
 const Header = ({ isOpenMenu, setIsOpenMenu }) => {
     return (
