@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+const apiKey = import.meta.env.VITE_API_KEY;
+
 const TcgIndex = () => {
 
     const [cards, setCards] = useState();
@@ -10,7 +12,7 @@ const TcgIndex = () => {
     const fetchCards = async () => {
         const res = await axios.get('https://api.pokemontcg.io/v2/cards?pageSize=20&q=set.name:base', {
             headers: {
-                'X-Api-Key': '307349a3-9010-4b96-993c-efe364b54878'
+                'X-Api-Key': apiKey
             }
         });
 
