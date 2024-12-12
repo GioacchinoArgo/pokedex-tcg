@@ -69,7 +69,7 @@ const PokedexIndex = () => {
 
                     {pokemonDetail?.map(pokemon => (
                         <Link to={`/pokedex/${pokemon.id}`} className='py-4 basis-1/5 rounded-md shadow-lg flex flex-col items-center justify-center overflow-hidden hover:scale-110 cursor-pointer ease-in-out duration-200' key={`pokemon-${pokemon.id}`}>
-                            <img src={pokemon.sprites.other['official-artwork'].front_default} alt={pokemon.name} />
+                            <img className="select-none drag" src={pokemon.sprites.other['official-artwork'].front_default} alt={pokemon.name} />
                             <h2 className="capitalize text-2xl">{pokemon.name}</h2>
 
                             {/* Badge dei tipi */}
@@ -77,7 +77,7 @@ const PokedexIndex = () => {
 
                                 {pokemon.dataTypes.map(({ name, image }, i) => (
                                     <div key={`type-${i}`}>
-                                        <img src={image} alt={name} className="h-6 w-[95px] rounded-md" />
+                                        <img src={image} alt={name} className="h-6 w-[95px] rounded-md select-none drag" />
                                     </div>
                                 ))}
 

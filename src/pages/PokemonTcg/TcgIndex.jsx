@@ -37,7 +37,7 @@ const TcgIndex = () => {
                 <div className="flex justify-center items-center gap-4 flex-wrap">
                     {cards?.map(card => (
                         <Link className="flex flex-col h-[350px] items-center justify-center overflow-hidden hover:scale-110 cursor-pointer ease-in-out duration-200" key={`card-${card.id}`}>
-                            <img className="shadow-lg rounded-md h-full" src={card.images.large} alt={card.name} />
+                            <img className="shadow-lg rounded-md h-full select-none drag" src={card.images.large} alt={card.name} />
                         </Link>
                     ))}
                 </div>

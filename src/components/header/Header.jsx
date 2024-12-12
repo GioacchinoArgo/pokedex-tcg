@@ -51,7 +51,7 @@ const Header = ({ isOpenMenu, setIsOpenMenu }) => {
                     className="py-4 pl-6 flex items-center text-[18px] font-bold w-full border-l-8 border-[#E3350D]"
                     onClick={() => setIsOpenMenu(!isOpenMenu)}
                 >
-                    <img className="h-12 me-4" src={pokedex} alt="about-us" />
+                    <img className="select-none drag h-12 me-4" src={pokedex} alt="about-us" />
                     Pokédex
                 </Link>
                 <div className="h-[1px] bg-gray-400"></div>
@@ -60,7 +60,7 @@ const Header = ({ isOpenMenu, setIsOpenMenu }) => {
                     className="py-4 pl-6 flex items-center text-[18px] font-bold text-2xl w-full border-l-8 border-y-1-[9ca3af] border-[#E6BC2F]"
                     onClick={() => setIsOpenMenu(!isOpenMenu)}
                 >
-                    <img className="h-12 me-4" src={cards} alt="about-us" />
+                    <img className="select-none drag h-12 me-4" src={cards} alt="about-us" />
                     TCG
                 </Link>
                 <div className="h-[1px] bg-gray-400"></div>
@@ -69,7 +69,7 @@ const Header = ({ isOpenMenu, setIsOpenMenu }) => {
                     className="py-4 pl-4 flex items-center text-[18px] font-bold w-full border-l-8 border-[#4DAD5B]"
                     onClick={() => setIsOpenMenu(!isOpenMenu)}
                 >
-                    <img className="h-12 me-4" src={aboutUs} alt="cards" />
+                    <img className="select-none drag h-12 me-4" src={aboutUs} alt="cards" />
                     About Us
                 </Link>
             </div>

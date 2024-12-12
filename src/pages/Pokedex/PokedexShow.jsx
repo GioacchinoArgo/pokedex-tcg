@@ -131,7 +131,7 @@ const PokedexShow = () => {
                     <li className="flex items-center justify-center gap-4 my-4">
                         {pokemon?.dataTypes.map(({ name, image }, i) => (
                             <div key={`type-${i}`}>
-                                <img src={image} alt={name} className="h-6 w-[95px] rounded-md" />
+                                <img src={image} alt={name} className="h-6 w-[95px] rounded-md select-none drag" />
                             </div>
                         ))}
                     </li>
