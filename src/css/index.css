@@ -7,6 +7,10 @@
     border-color: #E3350D;
 }
 
+.active.orange {
+    border-color: #EE6B2F;
+}
+
 .active.yellow {
     border-color: #E6BC2F;
 }
@@ -25,7 +29,7 @@ main {
     overflow: auto;
 }
 
-@layer base{
+@layer base {
     html {
         font-family: "Varela Round", sans-serif;
     }

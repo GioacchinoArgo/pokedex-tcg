@@ -10,14 +10,20 @@ const Header = ({ isOpenMenu, setIsOpenMenu }) => {
         <header className={`${isOpenMenu ? "h-screen" : "h-[80px]"} md:h-[80px] transform transition-all duration-700 text-white py-6 md:py-0 md:px-20 bg-[#101720] drop-shadow-md`}>
             <nav className="container md:h-full mx-auto flex items-center justify-between">
                 {/* Logo */}
-                <NavLink to={"/"} className="border-b-4 border-transparent h-full text-4xl flex items-center md:uppercase font-bold ml-3 md:pt-[4px]">Pokédex TCG</NavLink>
+                <NavLink
+                    to={"/"}
+                    className="md:border-b-4 md:hover:border-[#E3350D] red md:border-transparent h-full text-4xl flex items-center md:uppercase font-bold ml-3 md:pt-[4px]"
+                    onClick={() => setIsOpenMenu(false)}
+                >
+                    Pokédex TCG
+                </NavLink>
 
                 {/* Navbar Desktop */}
                 <div className="hidden md:h-full md:flex justify-end items-center">
                     <ul className="flex md:h-full items-center text-[17px] gap-10">
                         <li className="md:w-[100px] text-center md:h-full">
 
-                            <NavLink to={"/pokedex"} className="transition md:h-full md:flex md:items-center md:justify-center border-b-[4px] border-transparent hover:border-[#E3350D] pt-[4px] red">
+                            <NavLink to={"/pokedex"} className="transition md:h-full md:flex md:items-center md:justify-center border-b-[4px] border-transparent hover:border-[#EE6B2F] pt-[4px] orange">
                                 Pokédex
                             </NavLink>
                         </li>
@@ -47,8 +53,8 @@ const Header = ({ isOpenMenu, setIsOpenMenu }) => {
             {/* Navbar Mobile */}
             <div className={`md:hidden flex-col font-semibold transform transition-all duration-500 flex text-[#101720] bg-white mt-6 ${isOpenMenu ? "" : "invisible opacity-0"}`}>
                 <Link
-                    to={"/"}
-                    className="py-4 pl-6 flex items-center text-[18px] font-bold w-full border-l-8 border-[#E3350D]"
+                    to={"/pokedex"}
+                    className="py-4 pl-6 flex items-center text-[18px] font-bold w-full border-l-8 border-[#EE6B2F]"
                     onClick={() => setIsOpenMenu(!isOpenMenu)}
                 >
                     <img className="select-none drag h-12 me-4" src={pokedex} alt="about-us" />
