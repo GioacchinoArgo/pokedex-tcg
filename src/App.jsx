@@ -1,13 +1,35 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useMatch, useParams } from "react-router-dom";
 import PokedexIndex from "./pages/Pokedex/PokedexIndex";
 import DefaultLayout from "./layouts/DefaultLayout";
 import PokedexShow from "./pages/Pokedex/PokedexShow";
 import TcgIndex from "./pages/PokemonTcg/TcgIndex";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-
+import { useEffect } from "react";
 
 const App = () => {
+
+  const location = useLocation();
+
+  const matchPokedexDetail = useMatch("/pokedex/:id");
+
+  useEffect(() => {
+    let pageTitle = "Not Found";
+    const pageTitles = {
+      "/": "Home",
+      "/pokedex": "Pokédex",
+      "/tcg": "TCG",
+    };
+
+    if (matchPokedexDetail) {
+      pageTitle = "Pokédex - Dettaglio";
+    } else {
+      pageTitle = pageTitles[location.pathname] || "Not Found";
+    }
+
+    document.title = pageTitle;
+  }, [location, matchPokedexDetail]);
+
   return (
     <Routes>
 
