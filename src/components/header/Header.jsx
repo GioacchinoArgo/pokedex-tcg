@@ -10,7 +10,7 @@ const Header = ({ isOpenMenu, setIsOpenMenu }) => {
         <header className={`${isOpenMenu ? "h-screen" : "h-[80px]"} md:h-[80px] transform transition-all duration-700 text-white py-6 md:py-0 md:px-20 bg-[#101720] drop-shadow-md`}>
             <nav className="container md:h-full mx-auto flex items-center justify-between">
                 {/* Logo */}
-                <NavLink to={"/"} className="border-b-4 border-transparent h-full text-4xl md:uppercase font-bold ml-3 md:pt-[4px]">Pokédex TCG</NavLink>
+                <NavLink to={"/"} className="border-b-4 border-transparent h-full text-4xl flex items-center md:uppercase font-bold ml-3 md:pt-[4px]">Pokédex TCG</NavLink>
 
                 {/* Navbar Desktop */}
                 <div className="hidden md:h-full md:flex justify-end items-center">
