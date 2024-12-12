@@ -10,16 +10,14 @@ const Header = ({ isOpenMenu, setIsOpenMenu }) => {
         <header className={`${isOpenMenu ? "h-screen" : "h-[80px]"} md:h-[80px] transform transition-all duration-700 text-white py-6 md:py-0 md:px-20 bg-[#101720] drop-shadow-md`}>
             <nav className="container md:h-full mx-auto flex items-center justify-between">
                 {/* Logo */}
-                <Link className="text-4xl md:uppercase font-bold ml-3 flex items-center md:pt-[4px]">
-                    {/* <img className="h-12 me-2" src={logo} alt="about-us" /> */}
-                    Pokédex TCG
-                </Link>
+                <NavLink to={"/"} className="border-b-4 border-transparent h-full text-4xl md:uppercase font-bold ml-3 md:pt-[4px]">Pokédex TCG</NavLink>
 
                 {/* Navbar Desktop */}
                 <div className="hidden md:h-full md:flex justify-end items-center">
                     <ul className="flex md:h-full items-center text-[17px] gap-10">
                         <li className="md:w-[100px] text-center md:h-full">
-                            <NavLink to={"/"} className="transition md:h-full md:flex md:items-center border-b-[4px] border-transparent pt-[4px] md:justify-center hover:border-[#E3350D] red">
+
+                            <NavLink to={"/pokedex"} className="transition md:h-full md:flex md:items-center md:justify-center border-b-[4px] border-transparent hover:border-[#E3350D] pt-[4px] red">
                                 Pokédex
                             </NavLink>
                         </li>
