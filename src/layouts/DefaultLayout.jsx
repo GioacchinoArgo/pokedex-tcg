@@ -1,11 +1,15 @@
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import Header from "../components/header/Header";
+import Header from "../components/Header/Header";
 import { useHamburger } from "../contexts/HamburgerContext";
+import Loader from "../components/Loader/Loader";
+import { useLoader } from "../contexts/LoaderContext";
 
 const DefaultLayout = () => {
 
     const { isOpen, setIsOpen } = useHamburger(false);
+
+    const { loader } = useLoader();
 
     // Funzione per rimontare ogni volta il main quando l'hamburger menù è sopra i 768px
     useEffect(() => {
@@ -28,12 +32,15 @@ const DefaultLayout = () => {
 
     return (
         <>
+            {!loader &&
+                <Loader />
+            }
+
             <Header isOpenMenu={isOpen} setIsOpenMenu={setIsOpen} />
 
             <main className={`${isOpen ? "h-0" : "opacity-100"} transform transition-all duration-700`}>
                 <Outlet />
             </main>
-
 
         </>
     )
