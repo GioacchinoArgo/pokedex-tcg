@@ -3,11 +3,6 @@
 @tailwind utilities;
 
 /* Utilities */
-.active {
-    border-bottom-width: 4px; 
-    border-color: transparent; 
-}
-
 .active.red {
     border-color: #E3350D;
 }
@@ -28,4 +23,10 @@
 main {
     height: calc(100vh - 80px);
     overflow: auto;
+}
+
+@layer base{
+    html {
+        font-family: "Varela Round", sans-serif;
+    }
 }
