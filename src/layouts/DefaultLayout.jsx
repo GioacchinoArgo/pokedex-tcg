@@ -9,7 +9,7 @@ const DefaultLayout = () => {
 
     const { isOpen, setIsOpen } = useHamburger(false);
 
-    const { loader } = useLoader();
+    const { loader } = useLoader(true);
 
     // Funzione per rimontare ogni volta il main quando l'hamburger menù è sopra i 768px
     useEffect(() => {
@@ -32,7 +32,7 @@ const DefaultLayout = () => {
 
     return (
         <>
-            {!loader &&
+            {loader &&
                 <Loader />
             }
 
