@@ -4,7 +4,7 @@ const LoaderContext = createContext();
 
 const LoaderProvider = ({ children }) => {
 
-    const [loader, setLoader] = useState();
+    const [loader, setLoader] = useState(true);
 
     return (
         <LoaderContext.Provider value={{ loader, setLoader }}>
