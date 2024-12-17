@@ -1,12 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useLoader } from "../../contexts/LoaderContext";
 
 const PokedexShow = () => {
 
     const { id } = useParams();
 
     const [pokemon, setPokemon] = useState();
+
+    const { loader, setLoader } = useLoader();
 
     // Funzione ricorsiva per ottenere tutta la linea evolutiva
     const getAllEvolutions = async (chain, evolutions = []) => {
@@ -52,6 +55,7 @@ const PokedexShow = () => {
 
     // Funzione per cercare il Pokemon
     const fetchPokemon = async (id) => {
+        setLoader(true);
         const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
         let pokemon = res.data;
 
@@ -97,7 +101,16 @@ const PokedexShow = () => {
 
         // Creo l'oggeto con tutte le chiavi che mi servono
         pokemon = { ...pokemon, dataTypes, descriptions, category, evolutions, totalEvolution: evolutions.length }
-        setPokemon(pokemon);
+
+        // Imposto il setTimeout per vedere il loader
+        setTimeout(() => {
+
+            setPokemon(pokemon);
+
+            setLoader(false);
+
+        }, 500);
+
         console.log(pokemon);
     }
 
@@ -108,113 +121,115 @@ const PokedexShow = () => {
     return (
         <section>
 
-            <div className="container mx-auto py-8">
+            {loader ||
+                <div className="container mx-auto py-8">
 
-                <ul className="flex justify-center items-center flex-col">
+                    <ul className="flex justify-center items-center flex-col">
 
-                    {/* Immagine */}
-                    <li className="flex">
-                        <figure>
-                            <img className="select-none drag" src={pokemon?.sprites.other['official-artwork'].front_default} alt="" />
-                        </figure>
-                        <figure>
-                            <img className="select-none drag" src={pokemon?.sprites.other['official-artwork'].front_shiny} alt="" />
-                        </figure>
-                    </li>
+                        {/* Immagine */}
+                        <li className="flex">
+                            <figure>
+                                <img className="select-none drag" src={pokemon?.sprites.other['official-artwork'].front_default} alt="" />
+                            </figure>
+                            <figure>
+                                <img className="select-none drag" src={pokemon?.sprites.other['official-artwork'].front_shiny} alt="" />
+                            </figure>
+                        </li>
 
-                    {/* Nome */}
-                    <li>
-                        <p className="capitalize text-3xl">{pokemon?.name}</p>
-                    </li>
+                        {/* Nome */}
+                        <li>
+                            <p className="capitalize text-3xl">{pokemon?.name}</p>
+                        </li>
 
-                    {/* Tipi */}
-                    <li className="flex items-center justify-center gap-4 my-4">
-                        {pokemon?.dataTypes.map(({ name, image }, i) => (
-                            <div key={`type-${i}`}>
-                                <img src={image} alt={name} className="h-6 w-[95px] rounded-md select-none drag" />
-                            </div>
-                        ))}
-                    </li>
-
-                    {/* Peso */}
-                    <li>
-                        <p className="text-xl">Peso: <span>{pokemon?.weight / 10} </span>Kg</p>
-                    </li>
-
-                    {/* Altezza */}
-                    <li>
-                        <p className="text-xl">Altezza: <span>{pokemon?.height / 10} </span>m</p>
-                    </li>
-
-                    {/* Categoria */}
-                    <li>
-                        <p className="text-xl">Categoria: {pokemon?.category[0].genus}</p>
-                    </li>
-
-                    {/* Abilità */}
-                    <li>
-                        <p className="text-xl">Abilità: <span className="capitalize">{pokemon?.abilities[0].ability.name}</span></p>
-                    </li>
-
-                    {/* Stats */}
-                    <li>
-                        <h4 className="text-2xl">Statistics</h4>
-                        <ul>
-                            {pokemon?.stats.map((stat, i) => (
-                                <li key={`stat-${i}`}>
-                                    <p className="capitalize">{stat.stat.name}: {stat.base_stat}</p>
-                                </li>
-                            ))}
-                        </ul>
-                    </li>
-
-                    {/* Linea Evolutiva */}
-                    <li className="w-4/5 h-[400px] bg-slate-600 my-16 rounded-md p-6">
-                        <div className="h-full w-full rounded-md flex justify-center gap-10">
-
-                            {pokemon?.evolutions.map((evolution, i) => (
-                                <div key={`pokemon-${i}`} className={`basis-1/${pokemon?.totalEvolution} bg-orange-300 p-4 rounded-full`}>
-                                    <figure className="h-3/4 overflow-hidden flex justify-center">
-                                        <img className="h-full select-none drag" src={evolution.image} alt={evolution.name} />
-                                    </figure>
-                                    <h2 className="capitalize text-center text-xl">{evolution.name}</h2>
-                                    <div className="flex gap-2 justify-center items-center my-4">
-
-                                        {evolution.types.map(({ image, name }, i) => (
-                                            <div key={`type-${i}`}>
-                                                <img src={image} alt={name} className="h-6 w-[95px] rounded-md" />
-                                            </div>
-                                        ))}
-
-                                    </div>
-
+                        {/* Tipi */}
+                        <li className="flex items-center justify-center gap-4 my-4">
+                            {pokemon?.dataTypes.map(({ name, image }, i) => (
+                                <div key={`type-${i}`}>
+                                    <img src={image} alt={name} className="h-6 w-[95px] rounded-md select-none drag" />
                                 </div>
                             ))}
+                        </li>
 
-                        </div>
-                    </li>
+                        {/* Peso */}
+                        <li>
+                            <p className="text-xl">Peso: <span>{pokemon?.weight / 10} </span>Kg</p>
+                        </li>
 
-                    {/* Descrizione */}
-                    <li>
-                        <ul>
-                            {pokemon?.descriptions.map(({ flavor_text, version }, i) => (
-                                <li key={`description-${i}`} className="my-4">
-                                    <ul>
-                                        <li>
-                                            <p>{flavor_text}</p>
-                                        </li>
-                                        <li>
-                                            <p className="capitalize">{version.name}</p>
-                                        </li>
-                                    </ul>
-                                </li>
-                            ))}
-                        </ul>
-                    </li>
+                        {/* Altezza */}
+                        <li>
+                            <p className="text-xl">Altezza: <span>{pokemon?.height / 10} </span>m</p>
+                        </li>
 
-                </ul>
+                        {/* Categoria */}
+                        <li>
+                            <p className="text-xl">Categoria: {pokemon?.category[0].genus}</p>
+                        </li>
 
-            </div>
+                        {/* Abilità */}
+                        <li>
+                            <p className="text-xl">Abilità: <span className="capitalize">{pokemon?.abilities[0].ability.name}</span></p>
+                        </li>
+
+                        {/* Stats */}
+                        <li>
+                            <h4 className="text-2xl">Statistics</h4>
+                            <ul>
+                                {pokemon?.stats.map((stat, i) => (
+                                    <li key={`stat-${i}`}>
+                                        <p className="capitalize">{stat.stat.name}: {stat.base_stat}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </li>
+
+                        {/* Linea Evolutiva */}
+                        <li className="w-4/5 h-[400px] bg-slate-600 my-16 rounded-md p-6">
+                            <div className="h-full w-full rounded-md flex justify-center gap-10">
+
+                                {pokemon?.evolutions.map((evolution, i) => (
+                                    <div key={`pokemon-${i}`} className={`basis-1/${pokemon?.totalEvolution} bg-orange-300 p-4 rounded-full`}>
+                                        <figure className="h-3/4 overflow-hidden flex justify-center">
+                                            <img className="h-full select-none drag" src={evolution.image} alt={evolution.name} />
+                                        </figure>
+                                        <h2 className="capitalize text-center text-xl">{evolution.name}</h2>
+                                        <div className="flex gap-2 justify-center items-center my-4">
+
+                                            {evolution.types.map(({ image, name }, i) => (
+                                                <div key={`type-${i}`}>
+                                                    <img src={image} alt={name} className="h-6 w-[95px] rounded-md" />
+                                                </div>
+                                            ))}
+
+                                        </div>
+
+                                    </div>
+                                ))}
+
+                            </div>
+                        </li>
+
+                        {/* Descrizione */}
+                        <li>
+                            <ul>
+                                {pokemon?.descriptions.map(({ flavor_text, version }, i) => (
+                                    <li key={`description-${i}`} className="my-4">
+                                        <ul>
+                                            <li>
+                                                <p>{flavor_text}</p>
+                                            </li>
+                                            <li>
+                                                <p className="capitalize">{version.name}</p>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                ))}
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                </div>
+            }
 
         </section>
     )
