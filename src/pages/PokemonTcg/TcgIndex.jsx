@@ -12,7 +12,7 @@ const TcgIndex = () => {
     const { loader, setLoader } = useLoader();
 
     // Funzione per cercare le prime 20 carte
-    const fetchCards = async () => {
+    const fetchCardsDetails = async () => {
         setLoader(true);
 
         const res = await axios.get('https://api.pokemontcg.io/v2/cards?pageSize=20&q=set.name:base', {
@@ -36,7 +36,7 @@ const TcgIndex = () => {
     }
 
     useEffect(() => {
-        fetchCards()
+        fetchCardsDetails()
     }, [])
 
     return (
@@ -48,7 +48,10 @@ const TcgIndex = () => {
                     <h1 className="text-center text-6xl font-semibold mb-8">Trading Card Game</h1>
                     <div className="flex justify-center items-center gap-4 flex-wrap">
                         {cards?.map(card => (
-                            <Link className="flex flex-col h-[350px] items-center justify-center overflow-hidden hover:scale-110 cursor-pointer ease-in-out duration-200" key={`card-${card.id}`}>
+                            <Link to={`/tcg/${card.id}`} 
+                            className="flex flex-col h-[350px] items-center justify-center overflow-hidden hover:scale-110 cursor-pointer ease-in-out duration-200"
+                            key={`card-${card.id}`}
+                            >
                                 <img className="shadow-lg rounded-md h-full select-none drag" src={card.images.large} alt={card.name} />
                             </Link>
                         ))}

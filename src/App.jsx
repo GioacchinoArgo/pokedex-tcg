@@ -6,12 +6,14 @@ import TcgIndex from "./pages/PokemonTcg/TcgIndex";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
+import TcgShow from "./pages/PokemonTcg/TcgShow";
 
 const App = () => {
 
   const location = useLocation();
 
   const matchPokedexDetail = useMatch("/pokedex/:id");
+  const matchTcgDetail = useMatch("/tcg/:id");
 
   useEffect(() => {
     let pageTitle = "Not Found";
@@ -23,6 +25,8 @@ const App = () => {
 
     if (matchPokedexDetail) {
       pageTitle = "Pokédex - Dettaglio";
+    } else if (matchTcgDetail) {
+      pageTitle = "Tcg - Dettaglio";
     } else {
       pageTitle = pageTitles[location.pathname] || "Not Found";
     }
@@ -58,6 +62,10 @@ const App = () => {
 
           {/* Index Tcg */}
           <Route index element={<TcgIndex />} />
+
+          {/* Show */}
+          <Route path=":id" element={<TcgShow />} />
+
 
         </Route>
 
