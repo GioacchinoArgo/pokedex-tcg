@@ -9,7 +9,7 @@ const TcgIndex = () => {
     const [cards, setCards] = useState();
 
     // Funzione per cercare le prime 20 carte
-    const fetchCards = async () => {
+    const fetchCardsDetails = async () => {
         const res = await axios.get('https://api.pokemontcg.io/v2/cards?pageSize=20&q=set.name:base', {
             headers: {
                 'X-Api-Key': apiKey
@@ -25,7 +25,7 @@ const TcgIndex = () => {
     }
 
     useEffect(() => {
-        fetchCards()
+        fetchCardsDetails()
     }, [])
 
     return (
