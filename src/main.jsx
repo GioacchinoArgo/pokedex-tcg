@@ -4,15 +4,18 @@ import { BrowserRouter } from 'react-router-dom'
 import { HamburgerProvider } from './contexts/HamburgerContext.jsx'
 import './css/index.css'
 import App from './App.jsx'
+import { LoaderProvider } from './contexts/LoaderContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <HamburgerProvider>
+      <LoaderProvider>
+        <HamburgerProvider>
 
-        <App />
+          <App />
 
-      </HamburgerProvider>
+        </HamburgerProvider>
+      </LoaderProvider>
     </BrowserRouter>
   </StrictMode >
 )
