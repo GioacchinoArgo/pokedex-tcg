@@ -10,11 +10,11 @@ const Loader = () => {
 
                 <img src={spinloader} alt="Loader" className="w-full h-full" />
 
-                <figure className="h-[125px] absolute left-24 top-[190px] animate-spin">
+                <figure className="h-[155px] absolute left-[35px] top-[180px] loader-spin">
                     <img src={spiralLeft} alt="" className="h-full" />
                 </figure>
 
-                <figure className="h-[125px] absolute left-[270px] top-[190px] loader-spin">
+                <figure className="h-[155px] absolute left-[218px] top-[180px] animate-spin">
                     <img src={spiralRight} alt="" className="h-full" />
                 </figure>
 
