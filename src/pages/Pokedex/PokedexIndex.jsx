@@ -83,26 +83,30 @@ const PokedexIndex = () => {
         <section id="pokedex-index">
             {loader ||
                 <div className="container mx-auto py-8">
-                    <h1 className="text-center text-6xl font-semibold mb-4">Pokedex</h1>
+                    <h1 className="text-center text-6xl font-semibold mb-4">Pokédex</h1>
                     <div className="flex justify-center items-center gap-4 flex-wrap">
 
                         {pokemonDetail?.map(pokemon => (
-                            <Link to={`/pokedex/${pokemon.id}`} className='py-4 basis-1/5 flex flex-col items-center justify-center overflow-hidden hover:scale-110 cursor-pointer ease-in-out duration-200' key={`pokemon-${pokemon.id}`}>
+                            <Link to={`/pokedex/${pokemon.id}`} className='py-4 basis-1/5 flex flex-col items-center justify-center overflow-hidden hover:scale-[1.05] cursor-pointer ease-in-out duration-200 data-card' key={`pokemon-${pokemon.id}`}>
 
                                 {/* Immagine */}
-                                <figure style={{ backgroundColor: pokemonTypesColors[pokemon.dataTypes[0].name] }} className={`rounded-full overflow-hidden h-[280px] w-[280px] flex items-center justify-center`}>
-                                    <img className="select-none drag h-4/5" src={pokemon.sprites.other['official-artwork'].front_default} alt={pokemon.name} />
+                                <figure  className='rounded-full overflow-hidden h-[280px] w-[280px] flex items-center justify-center relative bg-slate-100 shadow-lg'>
+
+                                    <div style={{ backgroundColor: pokemon.dataTypes[1]?.name ? pokemonTypesColors[pokemon.dataTypes[1].name] : pokemonTypesColors[pokemon.dataTypes[0].name] }} className='h-[150px] w-[800px] absolute  -top-20 rotate-[30deg]'></div>
+                                    <div style={{ backgroundColor: pokemonTypesColors[pokemon.dataTypes[0].name] }} className='h-[150px] w-[800px] absolute  -top-20 -rotate-[43deg]'></div>
+
+                                    <img className="select-none drag h-4/5 z-10" src={pokemon.sprites.other['official-artwork'].front_default} alt={pokemon.name} />
                                 </figure>
 
                                 {/* Nome */}
-                                <h2 className="capitalize text-2xl mt-4">{pokemon.name}</h2>
+                                <h2 className="capitalize text-2xl mt-4 title">{pokemon.name}</h2>
 
                                 {/* Badge dei tipi */}
                                 <div className="flex justify-center items-center gap-2 mt-2 mb-4">
 
                                     {pokemon.dataTypes.map(({ name, image }, i) => (
                                         <div key={`type-${i}`}>
-                                            <img src={image} alt={name} className="h-6 w-[95px] rounded-md select-none drag" />
+                                            <img src={image} alt={name} className="h-6 w-[95px] rounded-md select-none drag type" />
                                         </div>
                                     ))}
 
